@@ -37,11 +37,12 @@ public class IndexPage extends BaseClass {
 		this.action = new Action();
 	}
 	
-	public LoginPage clickOnSignIn() throws Throwable {
-		action.fluentWait(getDriver(), signInBtn, 10);
+	
+	public LoginPage clickOnSignIn()  {
 		action.click(getDriver(), signInBtn);
+		action.implicitWait(getDriver(), 2);
 		action.switchToFrameByWebElement(getDriver(), loginIFrame);
-		action.implicitWait(getDriver(), 5);
+		action.implicitWait(getDriver(), 2);
 		return new LoginPage();
 	}
 	
@@ -54,11 +55,16 @@ public class IndexPage extends BaseClass {
 		return myStoreTitel;
 	}
 	
-	public SearchResultPage searchProduct(String productName) throws Throwable {
+	public SearchResultPage searchProduct(String productName) {
 		action.type(searchProductBox, productName);
 		action.scrollByVisibilityOfElement(getDriver(), searchButton);
 		action.click(getDriver(), searchButton);
-		Thread.sleep(3000);
+			
+		return new SearchResultPage();
+	}
+	
+	public SearchResultPage searchResultPage() {
+		
 		return new SearchResultPage();
 	}
 	

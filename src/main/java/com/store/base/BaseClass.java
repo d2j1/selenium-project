@@ -20,14 +20,10 @@ import org.testng.annotations.Parameters;
 
 import com.beust.jcommander.Parameter;
 import com.store.actiondriver.Action;
-import com.store.utility.ExtentManager;
+//import com.store.utility.ExtentManager;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
-/**
- * @author Hitendra: BaseClass is used to load the config file and Initialize 
- * WebDriver
- *  
- */
+
 public class BaseClass {
 	public static Properties prop;
 
@@ -37,13 +33,13 @@ public class BaseClass {
 	//loadConfig method is to load the configuration
 	@BeforeSuite(groups = { "Smoke", "Sanity", "Regression" })
 	public void loadConfig() {
-		ExtentManager.setExtent();
+//		ExtentManager.setExtent();
 		DOMConfigurator.configure("log4j.xml");
 
 		try {
 			prop = new Properties();
 			FileInputStream ip = new FileInputStream(
-					System.getProperty("user.dir") + "\\Configuration\\config.properties");
+					System.getProperty("user.dir") + "/Configuration/config.properties");
 			prop.load(ip);
 
 		} catch (FileNotFoundException e) {
@@ -87,6 +83,6 @@ public class BaseClass {
 
 	@AfterSuite(groups = { "Smoke", "Regression","Sanity" })
 	public void afterSuite() {
-		ExtentManager.endReport();
+//		ExtentManager.endReport();
 	}
 }
